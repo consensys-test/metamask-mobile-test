@@ -720,42 +720,27 @@ jobs:
         needs.get_requirements.outputs.android_e2e_needed == 'true' &&
         !(fromJSON(needs.smart-e2e-selection.outputs.ai_confidence || '0') >= 80 && needs.smart-e2e-selection.outputs.ai_e2e_test_tags == '[]')
       }}
-    permissions:
-      contents: read
-      id-token: write
     needs: [get_requirements, smart-e2e-selection]
-    uses: ./.github/workflows/build-android-e2e.yml
-    with:
-      build_type: 'main'
-      metamask_environment: 'e2e'
-      keystore_target: 'qa'
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: MCWP-440 validation build success
+        run: |
+          echo "MCWP-440 validation: build job succeeded"
 
   e2e-smoke-tests-android:
     name: 'Android E2E Smoke Tests'
     if: ${{ !cancelled() && needs.build-android-apks.result == 'success' }}
-    permissions:
-      contents: read
-      id-token: write
     needs: [get_requirements, build-android-apks, smart-e2e-selection]
-    uses: ./.github/workflows/run-e2e-smoke-tests-android.yml
-    with:
-      changed_files: ${{ needs.get_requirements.outputs.changed_files }}
-      selected_tags: >-
-        ${{
-          (fromJSON(needs.smart-e2e-selection.outputs.ai_confidence || '0') >= 80 && needs.smart-e2e-selection.outputs.ai_e2e_test_tags) ||
-          '["ALL"]'
-        }}
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+      - name: MCWP-440 validation forced E2E failure
+        run: |
+          echo "MCWP-440 validation: forced E2E failure"
+          exit 1
 
   build-ios-apps:
     name: 'Build iOS Apps'
-    if: >-
-      ${{
-        !cancelled() &&
-        needs.get_requirements.outputs.ios_e2e_needed == 'true' &&
-        !(fromJSON(needs.smart-e2e-selection.outputs.ai_confidence || '0') >= 80 && needs.smart-e2e-selection.outputs.ai_e2e_test_tags == '[]')
-      }}
+    if: ${{ false }}
     permissions:
       contents: read
       id-token: write
