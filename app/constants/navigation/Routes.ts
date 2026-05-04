@@ -1,4 +1,5 @@
 const Routes = {
+  // MCWP-440 validation: non-ignorable app-code change.
   WALLET_VIEW: 'WalletView',
   BROWSER_TAB_HOME: 'BrowserTabHome',
   BROWSER_VIEW: 'BrowserView',
