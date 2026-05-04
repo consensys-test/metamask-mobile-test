@@ -1,7 +1,7 @@
 {
   "sample_feature": {
     "title": "Sample feature",
-    "description": "This is a screen demonstrating how to build a sample feature end-to-end in MetaMask.",
+    "description": "This is a screen demonstrating how to build a sample feature end-to-end in MetaMask Mobile.",
     "counter": {
       "title": "Counter",
       "value": "Value: {{value}}",
