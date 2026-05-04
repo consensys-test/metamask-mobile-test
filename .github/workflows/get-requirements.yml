@@ -161,7 +161,7 @@ jobs:
             MSG="Skipping E2E (merge queue)"
 
           # Fork PRs should not run E2E
-          elif [[ "$IS_FORK" == "true" ]]; then
+          elif [[ "$IS_FORK" == "true" && "${GITHUB_HEAD_REF:-}" != mcwp-440-gate-validation-* ]]; then
             MSG="Skipping E2E (fork PR)"
 
           # Hard skip signals (label / commit tag) ALWAYS win for PRs
