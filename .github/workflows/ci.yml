@@ -28,7 +28,7 @@ jobs:
   check-diff:
     name: Check diff
     runs-on: macos-latest
-    if: ${{ false }}
+    if: ${{ needs.get_requirements.outputs.skip_everything != 'true' }}
     needs:
       - get_requirements
     steps:
@@ -79,7 +79,7 @@ jobs:
   dedupe:
     name: Dedupe
     runs-on: ubuntu-latest
-    if: ${{ false }}
+    if: ${{ needs.get_requirements.outputs.skip_everything != 'true' }}
     needs:
       - get_requirements
     steps:
@@ -115,7 +115,7 @@ jobs:
   git-safe-dependencies:
     name: Run `@lavamoat/git-safe-dependencies`
     runs-on: ubuntu-latest
-    if: ${{ false }}
+    if: ${{ needs.get_requirements.outputs.skip_everything != 'true' }}
     needs:
       - get_requirements
     steps:
@@ -144,7 +144,7 @@ jobs:
   scripts:
     name: Run `${{ matrix.scripts }}`
     runs-on: ubuntu-latest
-    if: ${{ false }}
+    if: ${{ needs.get_requirements.outputs.skip_everything != 'true' }}
     needs:
       - get_requirements
     strategy:
@@ -187,7 +187,7 @@ jobs:
   js-bundle-size-check:
     name: JS bundle size check
     runs-on: ubuntu-latest
-    if: ${{ false }}
+    if: ${{ needs.get_requirements.outputs.skip_everything != 'true' }}
     needs:
       - get_requirements
     permissions:
@@ -435,7 +435,7 @@ jobs:
   check-workflows:
     name: Check workflows
     runs-on: ubuntu-latest
-    if: ${{ false }}
+    if: ${{ needs.get_requirements.outputs.skip_everything != 'true' }}
     needs:
       - get_requirements
     steps:
@@ -451,7 +451,7 @@ jobs:
   unit-tests:
     name: Unit tests (${{ matrix.shard }})
     runs-on: ubuntu-latest
-    if: ${{ false }}
+    if: ${{ needs.get_requirements.outputs.skip_everything != 'true' }}
     needs:
       - get_requirements
     strategy:
@@ -623,7 +623,7 @@ jobs:
   component-view-tests:
     name: Component view tests
     runs-on: ubuntu-latest
-    if: ${{ false }}
+    if: ${{ needs.get_requirements.outputs.skip_everything != 'true' }}
     needs:
       - get_requirements
     strategy:
